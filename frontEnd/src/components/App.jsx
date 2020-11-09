@@ -16,7 +16,7 @@ function App() {
     { label: "😭" }
   ];
 
-  const [selectedMood, updateSelectedMood] = useState("");
+  const [selectedMood, updateSelectedMood] = useState(null);
 
   return (
     <div className={styles.App}>
