@@ -2,7 +2,7 @@ var AWS = require('aws-sdk');
 
 var table = 'moods';
 
-exports.handler = function (event, context, callback) {
+exports.handler = function(event, context, callback) {
   var docClient = new AWS.DynamoDB.DocumentClient();
 
   var user = 'unknown';
@@ -11,12 +11,11 @@ exports.handler = function (event, context, callback) {
   var params = {
     TableName: table,
     Key: {
-      user,
       date,
     },
   };
 
-  docClient.put(params, function (err, data) {
+  docClient.query(params, function(err, data) {
     if (err) {
       console.error(
         'Unable to get item. Error JSON:',
