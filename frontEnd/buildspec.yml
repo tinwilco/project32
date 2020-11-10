@@ -5,4 +5,4 @@ phases:
       - yarn install
   build:
     commands:
-      - yarn --cwd /frontEnd/ build
+      - yarn --cwd /frontEnd build
