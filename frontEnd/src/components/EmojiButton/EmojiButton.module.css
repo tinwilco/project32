@@ -1,14 +1,16 @@
+@import "../../colors.css";
+
 .EmojiButton {
   height: 100px;
   width: 100px;
   margin: 20px;
-  background-color: lightgray;
+  background-color: var(--background-light);
   font-size: 48px;
   border-radius: 100px;
   border-width: 1px;
-  border-color: black;
+  border-color: var(--border-dark);
 }
 
 .EmojiButton_selected {
-  background-color: blueviolet;
+  background-color: var(--highlight);
 }
