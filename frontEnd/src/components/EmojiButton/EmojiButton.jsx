@@ -8,35 +8,34 @@ const cx = classnames.bind(styles);
 
 const EmojiButton = ({
   label,
+  emoji,
   handleButtonPress,
   disabled,
-  color,
   selected
-}) => {
-  return (
-    <button
-      className={cx({ EmojiButton: true, EmojiButton_selected: selected })}
-      type="button"
-      onClick={handleButtonPress}
-      disabled={disabled}
-    >
-      {label}
-    </button>
-  );
-};
+}) => (
+  <button
+    className={cx({ EmojiButton: true, EmojiButton_selected: selected })}
+    type="button"
+    onClick={() => handleButtonPress(label)}
+    disabled={disabled}
+  >
+    <span role="img" aria-label={label}>
+      {emoji}
+    </span>
+  </button>
+);
 
 EmojiButton.propTypes = {
   label: PropTypes.string.isRequired,
   handleButtonPress: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  color: PropTypes.string,
+  emoji: PropTypes.string.isRequired,
   selected: PropTypes.bool
 };
 
 EmojiButton.defaultProps = {
   disabled: false,
-  selected: false,
-  color: "lightgrey"
+  selected: false
 };
 
 export default EmojiButton;

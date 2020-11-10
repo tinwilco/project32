@@ -1,0 +1,6 @@
+@import "../../assets/colors.css";
+@import "../../assets/breakpoints.css";
+
+.UsernameEntry {
+  width: 200px;
+}
