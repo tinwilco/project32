@@ -31,14 +31,6 @@
   }
 }
 
-.App_Button_Container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
 .logo {
   height: 150px;
   width: 150px;
@@ -48,13 +40,4 @@
 
 .SwitchModeButton {
   margin-top: 30px;
-}
-
-.submitButton {
-  margin-top: 20px;
-}
-
-.helpText {
-  font-size: 16px;
-  font-style: italic;
 }
