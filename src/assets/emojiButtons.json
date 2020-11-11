@@ -1,0 +1,9 @@
+{
+  "buttons": [
+    { "emoji": "😢", "label": "miserable" },
+    { "emoji": "🙁", "label": "sad" },
+    { "emoji": "😑", "label": "neutral" },
+    { "emoji": "🙂", "label": "happy" },
+    { "emoji": "🥳", "label": "ecstatic" }
+  ]
+}

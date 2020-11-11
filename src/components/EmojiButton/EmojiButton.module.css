@@ -1,0 +1,17 @@
+@import "../../assets/colors.css";
+
+.EmojiButton {
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  background-color: var(--background-light);
+  font-size: 48px;
+  border-radius: 100px;
+  border-width: 1px;
+  border-color: var(--border-dark);
+  transition: background-color ease-in-out 0.3s;
+}
+
+.EmojiButton_selected {
+  background-color: var(--highlight);
+}
