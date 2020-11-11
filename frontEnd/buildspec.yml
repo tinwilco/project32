@@ -9,3 +9,9 @@ phases:
   build:
     commands:
       - yarn --cwd frontEnd build
+reports:
+  jacoco-report:
+    files:
+      - 'test-results/jacoco-coverage-report.xml'
+    file-format: 'JACOCOXML'  
+   
