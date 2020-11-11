@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { format } from "date-fns";
-import { Button } from "reactstrap";
+import { Alert, Button, Spinner } from "reactstrap";
 
 import EmojiButton from "../EmojiButton/EmojiButton";
 import UsernameEntry from "../UsernameEntry/UsernameEntry";
@@ -8,15 +8,38 @@ import UsernameEntry from "../UsernameEntry/UsernameEntry";
 import styles from "./ColleagueInterface.module.css";
 
 import { buttons as emojiButtonArray } from "../../assets/emojiButtons.json";
+import { SendRecord } from "../utils/api";
 
 const ColleagueInterface = () => {
   const selectedDate = useMemo(() => new Date(), []);
 
   const [selectedMood, updateSelectedMood] = useState(null);
-  const [username, updateUsername] = useState("");
+  const [userName, updateUserName] = useState("");
+  const [isLoading, updateIsloading] = useState(false);
+  const [isSubmitted, updateIsSubmitted] = useState(false);
+  const [isError, updateIsError] = useState(false);
 
-  const handleSubmit = () => {
-    console.log({ mood: selectedMood, date: selectedDate, name: username });
+  const handleSubmit = async () => {
+    updateIsloading(true);
+
+    const payload = {
+      userName,
+      mood: selectedMood,
+      moodDate: format(selectedDate, "yyyy-MM-dd"),
+      comment: ""
+    };
+
+    const response = await SendRecord(payload);
+
+    if (response.status === 200) {
+      updateIsloading(false);
+      updateIsSubmitted(true);
+      updateIsError(false);
+    } else {
+      updateIsloading(false);
+      updateIsSubmitted(false);
+      updateIsError(true);
+    }
   };
 
   return (
@@ -37,18 +60,31 @@ const ColleagueInterface = () => {
         ))}
       </div>
       <UsernameEntry
-        handleUpdateUsername={value => updateUsername(value)}
-        username={username}
+        handleUpdateUsername={value => updateUserName(value)}
+        username={userName}
       />
       <Button
         color="primary"
         size="lg"
         className={styles.submitButton}
         onClick={handleSubmit}
-        disabled={!username || !selectedMood}
+        disabled={isLoading || isSubmitted || !userName || !selectedMood}
       >
         Submit
+        {isLoading && (
+          <Spinner className={styles.spinner} size="sm" color="light" />
+        )}
       </Button>
+      {isSubmitted && (
+        <Alert color="success" className={styles.alert}>
+          Thanks. Your mood has been recorded.
+        </Alert>
+      )}
+      {isError && (
+        <Alert color="danger" className={styles.alert}>
+          Sorry, your response coppuld not be recorded at this time.
+        </Alert>
+      )}
     </>
   );
 };

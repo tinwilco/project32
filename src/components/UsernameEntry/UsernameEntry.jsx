@@ -14,6 +14,7 @@ const UsernameEntry = ({ handleUpdateUsername, username }) => (
       value={username}
       onChange={e => handleUpdateUsername(e.target.value)}
       placeholder="Enter your name"
+      bsSize="lg"
     />
   </>
 );
