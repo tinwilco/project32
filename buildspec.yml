@@ -3,6 +3,9 @@ phases:
   install:
     commands:
       - yarn install
+  pre-build:
+    commands:
+      - npm test -- --coverage --watchAll=false
   build:
     commands:
       - yarn build
