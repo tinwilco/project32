@@ -19,10 +19,10 @@ exports[`App component renders to match the snapshot 1`] = `
             title="Hedwig Logo"
           />
           <h2>
-            How are you feeling today?
+            Hello, How are you feeling today?
           </h2>
           <h3>
-            Wednesday 11/11/2020
+            Wednesday 01/01/2020
           </h3>
           <p
             class="helpText"

@@ -20,7 +20,6 @@ function App() {
             alt="Hedwig Logo"
             title="Hedwig Logo"
           />
-          <h2>How are you feeling today?</h2>
           {!isManager ? <ColleagueInterface /> : <ManagerInterface />}
         </div>
         <Button
