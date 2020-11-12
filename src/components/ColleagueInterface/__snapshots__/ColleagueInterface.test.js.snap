@@ -4,7 +4,7 @@ exports[`Colleague Interface component matches the snapshot 1`] = `
 <body>
   <div>
     <h2>
-      Hello, How are you feeling today?
+      Hello , How are you feeling today?
     </h2>
     <h3>
       Wednesday 01/01/2020
