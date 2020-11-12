@@ -44,6 +44,8 @@ const ColleagueInterface = () => {
 
   return (
     <>
+      <h2>{`Hello ${userName}, How are you feeling today?`}</h2>
+
       <h3>{format(selectedDate, "EEEE dd/MM/yyyy")}</h3>
       {!selectedMood && (
         <p className={styles.helpText}>Please select from the options below</p>
@@ -82,7 +84,7 @@ const ColleagueInterface = () => {
       )}
       {isError && (
         <Alert color="danger" className={styles.alert}>
-          Sorry, your response coppuld not be recorded at this time.
+          Sorry, your response could not be recorded at this time.
         </Alert>
       )}
     </>

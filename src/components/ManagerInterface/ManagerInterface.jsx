@@ -1,35 +1,61 @@
-import { format, sub } from "date-fns";
-import React, { useMemo } from "react";
-import { Table } from "reactstrap";
+import { format, parse } from "date-fns";
+import React, { useEffect, useState } from "react";
+import { Card, CardBody, CardText, CardTitle } from "reactstrap";
+import { RetrieveRecordsForLastSevenDays } from "../utils/api";
+
+import styles from "./ManagerInterface.module.css";
 
 const ManagerInterface = () => {
   const today = new Date();
-  const dateArray = useMemo(() => [sub(today, { days: 1 }), today], []);
-  const queryResults = [];
+
+  const [moodResults, setMoodResults] = useState([]);
+  const [moodError, setMoodError] = useState([]);
+
+  useEffect(() => {
+    RetrieveRecordsForLastSevenDays(today)
+      .then(response => {
+        setMoodResults(response);
+      })
+      .catch(error => {
+        setMoodError(error);
+      });
+  }, []);
 
   return (
     <>
-      {queryResults.length ? (
-        <Table hover bordered>
-          <thead>
-            <th>Name</th>
-            {dateArray.map(date => (
-              <th>{format(date, "dd/MM/yyyy")}</th>
-            ))}
-          </thead>
-          <tbody>
-            {queryResults.map(result => (
-              <tr>
-                <td>{result.name}</td>
-                {result.map(item => (
-                  <td>{item.mood}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+      <h2>How are you feeling today?</h2>
+      {moodResults.length ? (
+        <div className={styles.card_container}>
+          {moodResults.map(moodResult => {
+            return (
+              <Card className={styles.card}>
+                <CardBody>
+                  <CardTitle className={styles.card_title}>
+                    {format(
+                      parse(moodResult?.date, "yyyy-MM-dd", new Date()),
+                      "EEEE dd/MM/yyyy"
+                    )}
+                  </CardTitle>
+                  <CardText>
+                    {moodResult?.moods.map(mood => {
+                      return (
+                        <>
+                          {`${mood?.userName}: ${mood?.mood}`}
+                          <br />
+                        </>
+                      );
+                    })}
+                  </CardText>
+                </CardBody>
+              </Card>
+            );
+          })}
+        </div>
       ) : (
-        <p>Sorry, no results match your query</p>
+        <p>
+          Sorry, no results match your query. We got the following error:
+          {moodError}
+        </p>
       )}
     </>
   );
