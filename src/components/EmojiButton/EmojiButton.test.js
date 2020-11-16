@@ -19,6 +19,7 @@ describe("EmojiButton component", () => {
     const subject = render(<EmojiButton {...defaultProps} />);
     expect(subject.baseElement).toMatchSnapshot();
   });
+
   it("correctly calls the handleButtonPress method when the button is clicked", () => {
     render(<EmojiButton {...defaultProps} />);
     expect(defaultProps.handleButtonPress).not.toHaveBeenCalled();
