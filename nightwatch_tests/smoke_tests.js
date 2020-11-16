@@ -5,7 +5,7 @@ module.exports =
         browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
               
         const cssSelector = "#root > div > div > div > img"
-        browser.pause(2 * 1000)
+        browser.assert.visible("#root > div > div > div > img");
                                         },
 
    
