@@ -2,11 +2,11 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import MockDate from "mockdate";
 import userEvent from "@testing-library/user-event";
-import axios from "axios";
+import * as api from "../utils/api";
 
 import ColleagueInterface from "./ColleagueInterface";
 
-jest.mock("axios");
+jest.mock("../utils/api");
 
 describe("Colleague Interface component", () => {
   beforeAll(() => {
@@ -46,7 +46,7 @@ describe("Colleague Interface component", () => {
   });
 
   it("displays a loading spinner while request is pending, removes it when complete", async () => {
-    axios.post.mockResolvedValue({ status: 200 });
+    api.SendRecord.mockResolvedValue({ status: 200 });
     render(<ColleagueInterface />);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     userEvent.click(screen.getByLabelText("ecstatic"));
@@ -59,7 +59,7 @@ describe("Colleague Interface component", () => {
   });
 
   it("displays a success alert when request is successful", async () => {
-    axios.post.mockResolvedValue({ status: 200 });
+    api.SendRecord.mockResolvedValue({ status: 200 });
     render(<ColleagueInterface />);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     userEvent.click(screen.getByLabelText("ecstatic"));
@@ -73,7 +73,10 @@ describe("Colleague Interface component", () => {
   });
 
   it("displays a failure alert when request is unsuccessful", async () => {
-    axios.post.mockResolvedValue({ status: 500 });
+    api.SendRecord.mockResolvedValue({
+      status: 500,
+      error: "testing error scenario"
+    });
     render(<ColleagueInterface />);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     userEvent.click(screen.getByLabelText("ecstatic"));
