@@ -1,18 +1,29 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import MockDate from "mockdate";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import App from "./App";
 
+jest.mock("./ColleagueInterface/ColleagueInterface");
+
+jest.mock("./ManagerInterface/ManagerInterface");
+
 describe("App component", () => {
-  beforeAll(() => {
-    MockDate.set("2020-01-01");
+  it("renders Colleague interface by default", () => {
+    render(<App />);
+    expect(screen.queryByText("ColleagueInterface")).toBeInTheDocument();
+    expect(screen.queryByText("ManagerInterface")).not.toBeInTheDocument();
   });
-  afterAll(() => {
-    MockDate.reset();
-  });
-  it("renders to match the snapshot", () => {
-    const subject = render(<App />);
-    expect(subject.baseElement).toMatchSnapshot();
+
+  it("toggles between interfaces when button pressed", () => {
+    render(<App />);
+    expect(screen.queryByText("ColleagueInterface")).toBeInTheDocument();
+    expect(screen.queryByText("ManagerInterface")).not.toBeInTheDocument();
+    userEvent.click(screen.getByRole("button"));
+    expect(screen.queryByText("ColleagueInterface")).not.toBeInTheDocument();
+    expect(screen.queryByText("ManagerInterface")).toBeInTheDocument();
+    userEvent.click(screen.getByRole("button"));
+    expect(screen.queryByText("ColleagueInterface")).toBeInTheDocument();
+    expect(screen.queryByText("ManagerInterface")).not.toBeInTheDocument();
   });
 });
