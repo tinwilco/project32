@@ -9,6 +9,7 @@
 /coverage
 /chromedriver.log
 /geckodriver.log
+/tests_output
 
 # production
 /build
