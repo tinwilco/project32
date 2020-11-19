@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - yarn install
+      - echo google-chrome --version 
   pre_build:
     commands:
       - npm test -- --coverage --watchAll=false
