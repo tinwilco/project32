@@ -3,7 +3,6 @@ phases:
   install:
     commands:
       - yarn install
-      - npm install chromedriver --save-dev
   pre_build:
     commands:
       - npm test -- --coverage --watchAll=false
