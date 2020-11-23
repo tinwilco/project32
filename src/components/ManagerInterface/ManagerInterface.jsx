@@ -1,5 +1,5 @@
 import { format, parse } from "date-fns";
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 import { RetrieveRecordsForLastSevenDays } from "../utils/api";
 
