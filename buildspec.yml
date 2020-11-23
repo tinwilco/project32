@@ -3,9 +3,11 @@ phases:
   install:
     commands:
       - yarn install
+      - google-chrome --version 
   pre_build:
     commands:
       - npm test -- --coverage --watchAll=false
+      - npx nightwatch -e chrome --headless
   build:
     commands:
       - yarn build
