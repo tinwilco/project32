@@ -16,20 +16,27 @@ export async function SendRecord(payload) {
 }
 
 export async function RetrieveRecordsForLastSevenDays(date) {
-  const dates = [
-    format(sub(date, { days: 6 }), "yyyy-MM-dd"),
-    format(sub(date, { days: 5 }), "yyyy-MM-dd"),
-    format(sub(date, { days: 4 }), "yyyy-MM-dd"),
-    format(sub(date, { days: 3 }), "yyyy-MM-dd"),
-    format(sub(date, { days: 2 }), "yyyy-MM-dd"),
-    format(sub(date, { days: 1 }), "yyyy-MM-dd"),
-    format(date, "yyyy-MM-dd")
-  ];
-  const records = await Promise.all(
-    dates.map(async item => {
-      const response = await axios.get(`${baseBath}/userMoods?date=${item}`);
-      return { date: item, moods: response.data };
-    })
-  );
-  return records;
+  try {
+    const dates = [
+      format(sub(date, { days: 6 }), "yyyy-MM-dd"),
+      format(sub(date, { days: 5 }), "yyyy-MM-dd"),
+      format(sub(date, { days: 4 }), "yyyy-MM-dd"),
+      format(sub(date, { days: 3 }), "yyyy-MM-dd"),
+      format(sub(date, { days: 2 }), "yyyy-MM-dd"),
+      format(sub(date, { days: 1 }), "yyyy-MM-dd"),
+      format(date, "yyyy-MM-dd")
+    ];
+    const records = await Promise.all(
+      dates.map(async item => {
+        const response = await axios.get(`${baseBath}/userMoods?date=${item}`);
+        return { date: item, moods: response.data };
+      })
+    );
+    return records;
+  } catch (e) {
+    return {
+      status: 500,
+      error: e.message
+    };
+  }
 }

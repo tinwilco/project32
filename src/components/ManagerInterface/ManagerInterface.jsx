@@ -1,5 +1,5 @@
 import { format, parse } from "date-fns";
-import React, { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 import { RetrieveRecordsForLastSevenDays } from "../utils/api";
 
@@ -12,13 +12,13 @@ const ManagerInterface = () => {
   const [moodError, setMoodError] = useState([]);
 
   useEffect(() => {
-    RetrieveRecordsForLastSevenDays(today)
-      .then(response => {
+    RetrieveRecordsForLastSevenDays(today).then(response => {
+      if (response.status === 500) {
+        setMoodError(response.error);
+      } else {
         setMoodResults(response);
-      })
-      .catch(error => {
-        setMoodError(error);
-      });
+      }
+    });
   }, []);
 
   return (
@@ -28,7 +28,7 @@ const ManagerInterface = () => {
         <div className={styles.card_container}>
           {moodResults.map(moodResult => {
             return (
-              <Card className={styles.card}>
+              <Card className={styles.card} key={`card-${moodResult?.date}`}>
                 <CardBody>
                   <CardTitle className={styles.card_title}>
                     {format(
@@ -39,10 +39,12 @@ const ManagerInterface = () => {
                   <CardText>
                     {moodResult?.moods.map(mood => {
                       return (
-                        <>
+                        <Fragment
+                          key={`${mood.userName}-mood-${moodResult.date}`}
+                        >
                           {`${mood?.userName}: ${mood?.mood}`}
                           <br />
-                        </>
+                        </Fragment>
                       );
                     })}
                   </CardText>
@@ -54,7 +56,7 @@ const ManagerInterface = () => {
       ) : (
         <p>
           Sorry, no results match your query. We got the following error:
-          {moodError}
+          {JSON.stringify(moodError)}
         </p>
       )}
     </>
