@@ -3,7 +3,7 @@ phases:
   install:
     commands:
       - yarn install
-      - google-chrome --version 
+      - google-chrome --version
   pre_build:
     commands:
       - npm test -- --coverage --watchAll=false
@@ -17,3 +17,4 @@ artifacts:
     - "**/*"
   discard-paths: no
   base-directory: build
+#coment 2
