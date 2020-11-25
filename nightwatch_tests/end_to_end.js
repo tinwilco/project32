@@ -31,7 +31,7 @@ module.exports = {
       "Helen's 2nd automation test"
     );
     await browser.click(submit_button_cssSelector);
-    browser.waitForElementVisible(submit_button_cssSelector,8000);
+    browser.waitForElementVisible(submit_button_cssSelector, 8000);
   },
 
   "2. Check name appears in sentence when submit button is enabled ": async function (
@@ -45,10 +45,8 @@ module.exports = {
     browser.assert.containsText(
       hello_how_are_you_feeling_text_cssSelector,
       "Hello Barry automation, How are you feeling today?"
-      
     );
-    browser.waitForElementVisible(submit_button_cssSelector,8000);
-    
+    browser.waitForElementVisible(submit_button_cssSelector, 8000);
   },
   "3. Check name appears in sentence when submit button is disabled ": async function (
     browser

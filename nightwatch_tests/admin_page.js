@@ -1,4 +1,3 @@
-
 const return_to_mood_entry_cssSelector = "#root > div > div > button";
 const select_from_images_text_cssSelector = "#root > div > div > div > p";
 
@@ -9,7 +8,7 @@ module.exports = {
     browser
   ) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
-    
+
     await browser.click(return_to_mood_entry_cssSelector);
 
     browser.assert.visible(return_to_mood_entry_cssSelector);
@@ -19,7 +18,7 @@ module.exports = {
     browser
   ) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
-    
+
     await browser.click(return_to_mood_entry_cssSelector);
 
     browser.assert.visible(return_to_mood_entry_cssSelector);
