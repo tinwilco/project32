@@ -5,8 +5,22 @@
   text-align: center;
 }
 
-.App_background {
-  background-color: var(--background-dark);
+.App_Dark,
+:root {
+  --background: var(--background-dark);
+  --text: var(--text-light);
+  --button: var(--background-light);
+}
+
+.App_Light,
+:root {
+  --background: var(--background-light);
+  --text: var(--text-dark);
+  --button: var(--background-dark);
+}
+
+.App_Background {
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +28,7 @@
   min-height: 100vh;
 }
 
-.App_container {
+.App_Container {
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -22,22 +36,16 @@
   justify-content: center;
   text-align: center;
   font-size: calc(10px + 2vmin);
-  color: var(--text-light);
+  color: var(--text);
 }
 
-@media (max-width: var(--mobile-max-width)) {
-  .App_container {
-    width: 100%;
-  }
-}
-
-.logo {
+.Logo {
   height: 150px;
   width: 150px;
   align-self: flex-end;
   margin: 20px;
 }
 
-.SwitchModeButton {
+.Switch_Mode__Button {
   margin-top: 30px;
 }

@@ -11,11 +11,11 @@
 
 .card {
   font-size: 16px;
-  color: var(--background-dark);
+  color: var(--background);
   margin: 20px;
   text-align: left;
   width: 300px;
-  background-color: var(--background-light);
+  background-color: var(--background);
 }
 
 .card_title {
