@@ -84,6 +84,7 @@ const ColleagueInterface = ({ darkMode }) => {
       <UsernameEntry
         handleUpdateUsername={(value) => updateUserName(value)}
         username={userName}
+        darkMode={darkMode}
       />
       <Button
         color="primary"
