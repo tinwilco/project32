@@ -48,5 +48,14 @@
   color: black;
 }
 
+.card {
+  font-size: 16px;
+  color: var(--background-light);
+  margin: 20px;
+  text-align: left;
+  width: 300px;
+  background-color: var(--background-dark);
+}
+
 
 
