@@ -7,7 +7,6 @@ import styles from "./ManagerInterface.module.css";
 
 const ManagerInterface = () => {
   const today = new Date();
-
   const [moodResults, setMoodResults] = useState([]);
   const [moodError, setMoodError] = useState([]);
 

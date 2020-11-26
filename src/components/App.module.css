@@ -6,6 +6,7 @@
 }
 
 .App_background {
+  transition-duration: 2s;
   background-color: var(--background-dark);
   display: flex;
   flex-direction: column;
@@ -23,6 +24,7 @@
   text-align: center;
   font-size: calc(10px + 2vmin);
   color: var(--text-light);
+  padding-top: 7px;
 }
 
 @media (max-width: var(--mobile-max-width)) {
@@ -40,4 +42,9 @@
 
 .SwitchModeButton {
   margin-top: 30px;
+}
+
+.TextBackground {
+  transition-duration: 2s;
+  color: white;
 }

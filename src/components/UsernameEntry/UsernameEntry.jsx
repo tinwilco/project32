@@ -2,16 +2,22 @@ import { Input, Label } from "reactstrap";
 import PropTypes from "prop-types";
 
 import styles from "./UsernameEntry.module.css";
+import lightstyles from "../LightApp.module.css";
 
-const UsernameEntry = ({ handleUpdateUsername, username }) => (
+const UsernameEntry = ({ handleUpdateUsername, username, darkMode }) => (
   <>
-    <Label for="usernameInputTextBox">Who are you?</Label>
+    <Label
+      className={darkMode ? styles.TextBackground : lightstyles.TextBackground}
+      for="usernameInputTextBox"
+    >
+      Who are you?
+    </Label>
     <Input
       id="usernameInputTextBox"
       className={styles.UsernameEntry}
       type="text"
       value={username}
-      onChange={e => handleUpdateUsername(e.target.value)}
+      onChange={(e) => handleUpdateUsername(e.target.value)}
       placeholder="Enter your name"
       bsSize="lg"
     />
@@ -20,7 +26,8 @@ const UsernameEntry = ({ handleUpdateUsername, username }) => (
 
 UsernameEntry.propTypes = {
   handleUpdateUsername: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired
+  username: PropTypes.string.isRequired,
+  darkMode: PropTypes.string.isRequired,
 };
 
 export default UsernameEntry;

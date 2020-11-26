@@ -1,26 +1,66 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "reactstrap";
+import DarkModeToggle from "react-dark-mode-toggle";
 
 import logo from "../assets/logo.png";
 import ColleagueInterface from "./ColleagueInterface/ColleagueInterface";
 import ManagerInterface from "./ManagerInterface/ManagerInterface";
 
 import styles from "./App.module.css";
+import lightstyles from "./LightApp.module.css";
+
+function getPrefColorScheme() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+const getInitialMode = () => {
+  const isReturningUser = "mode" in localStorage;
+  const savedMode = JSON.parse(localStorage.getItem("mode"));
+  const userPrefersDark = getPrefColorScheme();
+
+  if (isReturningUser) {
+    return savedMode;
+  }
+  if (userPrefersDark) {
+    return true;
+  }
+  return false;
+};
 
 function App() {
   const [isManager, updateIsManager] = useState(false);
+  const [darkMode, setDarkMode] = React.useState(getInitialMode());
+  React.useEffect(() => {
+    localStorage.setItem("mode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
   return (
     <div className={styles.App}>
-      <div className={styles.App_background}>
+      <div
+        className={
+          darkMode ? styles.App_background : lightstyles.App_background
+        }
+      >
         <div className={styles.App_container}>
+          <DarkModeToggle onChange={setDarkMode} checked={darkMode} size={80} />
+          <p1
+            className={
+              darkMode ? styles.TextBackground : lightstyles.TextBackground
+            }
+          >
+            {darkMode ? "Dark Mode" : "Light Mode"}
+          </p1>
           <img
             className={styles.logo}
             src={logo}
             alt="Hedwig Logo"
             title="Hedwig Logo"
           />
-          {!isManager ? <ColleagueInterface /> : <ManagerInterface />}
+          {!isManager ? (
+            <ColleagueInterface darkMode={darkMode} />
+          ) : (
+            <ManagerInterface darkMode={darkMode} />
+          )}
         </div>
         <Button
           color="link"
