@@ -87,4 +87,15 @@ describe("Colleague Interface component", () => {
       );
     });
   });
+
+  it("shows the help text only when a mood is not selected", () => {
+    render(<ColleagueInterface />);
+    expect(
+      screen.queryByText("Please select from the options below")
+    ).toBeInTheDocument();
+    userEvent.click(screen.getByLabelText("ecstatic"));
+    expect(
+      screen.queryByText("Please select from the options below")
+    ).not.toBeInTheDocument();
+  });
 });

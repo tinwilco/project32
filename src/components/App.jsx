@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import DarkModeToggle from "react-dark-mode-toggle";
 
-import logo from "../assets/logo.png";
+import logo from "../assets/logo_no_bg.png";
 import ColleagueInterface from "./ColleagueInterface/ColleagueInterface";
 import ManagerInterface from "./ManagerInterface/ManagerInterface";
 

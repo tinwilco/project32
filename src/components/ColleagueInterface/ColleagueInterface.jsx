@@ -109,7 +109,7 @@ const ColleagueInterface = ({ darkMode }) => {
 };
 
 ColleagueInterface.propTypes = {
-  darkMode: PropTypes.string.isRequired,
+  darkMode: PropTypes.string,
 };
 
 ColleagueInterface.defaultProps = {
