@@ -77,8 +77,4 @@ ManagerInterface.propTypes = {
   darkMode: PropTypes.string.isRequired,
 };
 
-ManagerInterface.defaultProps = {
-  darkMode: "",
-};
-
 export default ManagerInterface;
