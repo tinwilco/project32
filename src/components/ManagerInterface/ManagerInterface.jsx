@@ -36,9 +36,7 @@ const ManagerInterface = ({ darkMode }) => {
           {moodResults.map((moodResult) => {
             return (
               <Card
-                className={
-                  darkMode ? styles.card : lightstyles.card
-                }
+                className={darkMode ? styles.card : lightstyles.card}
                 key={`card-${moodResult?.date}`}
               >
                 <CardBody>

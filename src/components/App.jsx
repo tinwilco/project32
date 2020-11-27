@@ -43,13 +43,13 @@ function App() {
       >
         <div className={styles.App_container}>
           <DarkModeToggle onChange={setDarkMode} checked={darkMode} size={80} />
-          <p1
+          <p
             className={
               darkMode ? styles.TextBackground : lightstyles.TextBackground
             }
           >
             {darkMode ? "Dark Mode" : "Light Mode"}
-          </p1>
+          </p>
           <img
             className={styles.logo}
             src={logo}
