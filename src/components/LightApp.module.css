@@ -7,7 +7,7 @@
 
 .App_background {
   transition-duration: 2s;
-  background-color: var(--background-dark);
+  background-color: var(--background-white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,6 @@
   text-align: center;
   font-size: calc(10px + 2vmin);
   color: var(--text-light);
-  padding-top: 7px;
 }
 
 @media (max-width: var(--mobile-max-width)) {
@@ -46,5 +45,17 @@
 
 .TextBackground {
   transition-duration: 2s;
-  color: white;
+  color: black;
 }
+
+.card {
+  font-size: 16px;
+  color: var(--background-light);
+  margin: 20px;
+  text-align: left;
+  width: 300px;
+  background-color: var(--background-dark);
+}
+
+
+

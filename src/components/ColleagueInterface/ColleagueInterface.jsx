@@ -1,16 +1,18 @@
 import { useMemo, useState } from "react";
 import { format } from "date-fns";
 import { Alert, Button, Spinner } from "reactstrap";
+import PropTypes from "prop-types";
 
 import EmojiButton from "../EmojiButton/EmojiButton";
 import UsernameEntry from "../UsernameEntry/UsernameEntry";
 
 import styles from "./ColleagueInterface.module.css";
+import lightstyles from "../LightApp.module.css";
 
 import { buttons as emojiButtonArray } from "../../assets/emojiButtons.json";
 import { SendRecord } from "../utils/api";
 
-const ColleagueInterface = () => {
+const ColleagueInterface = ({ darkMode }) => {
   const selectedDate = useMemo(() => new Date(), []);
 
   const [selectedMood, updateSelectedMood] = useState(null);
@@ -26,7 +28,7 @@ const ColleagueInterface = () => {
       userName,
       mood: selectedMood,
       moodDate: format(selectedDate, "yyyy-MM-dd"),
-      comment: ""
+      comment: "",
     };
 
     const response = await SendRecord(payload);
@@ -44,14 +46,32 @@ const ColleagueInterface = () => {
 
   return (
     <>
-      <h2>{`Hello ${userName}, How are you feeling today?`}</h2>
+      <h2
+        className={
+          darkMode ? styles.TextBackground : lightstyles.TextBackground
+        }
+      >
+        {`Hello ${userName}, How are you feeling today?`}
+      </h2>
 
-      <h3>{format(selectedDate, "EEEE dd/MM/yyyy")}</h3>
+      <h3
+        className={
+          darkMode ? styles.TextBackground : lightstyles.TextBackground
+        }
+      >
+        {format(selectedDate, "EEEE dd/MM/yyyy")}
+      </h3>
       {!selectedMood && (
-        <p className={styles.helpText}>Please select from the options below</p>
+        <p
+          className={
+            darkMode ? styles.TextBackground : lightstyles.TextBackground
+          }
+        >
+          Please select from the options below
+        </p>
       )}
       <div className={styles.App_Button_Container}>
-        {emojiButtonArray.map(button => (
+        {emojiButtonArray.map((button) => (
           <EmojiButton
             label={button.label}
             emoji={button.emoji}
@@ -62,8 +82,9 @@ const ColleagueInterface = () => {
         ))}
       </div>
       <UsernameEntry
-        handleUpdateUsername={value => updateUserName(value)}
+        handleUpdateUsername={(value) => updateUserName(value)}
         username={userName}
+        darkMode={darkMode}
       />
       <Button
         color="primary"
@@ -89,6 +110,10 @@ const ColleagueInterface = () => {
       )}
     </>
   );
+};
+
+ColleagueInterface.propTypes = {
+  darkMode: PropTypes.string.isRequired,
 };
 
 export default ColleagueInterface;
