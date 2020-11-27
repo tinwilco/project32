@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 
 import logo from "../assets/logo.png";
@@ -6,9 +6,28 @@ import ColleagueInterface from "./ColleagueInterface/ColleagueInterface";
 import ManagerInterface from "./ManagerInterface/ManagerInterface";
 
 import styles from "./App.module.css";
+import { Authenticate } from "./utils/api";
 
 function App() {
   const [isManager, updateIsManager] = useState(false);
+  const [idToken, updateIdToken] = useState(null);
+
+  useEffect(async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get("code");
+    const token = await Authenticate(code);
+    updateIdToken(token);
+  }, []);
+
+  let content = <div>Loading</div>;
+
+  if (idToken !== null) {
+    content = !isManager ? (
+      <ColleagueInterface idToken={idToken} />
+    ) : (
+      <ManagerInterface />
+    );
+  }
 
   return (
     <div className={styles.App}>
@@ -20,7 +39,7 @@ function App() {
             alt="Hedwig Logo"
             title="Hedwig Logo"
           />
-          {!isManager ? <ColleagueInterface /> : <ManagerInterface />}
+          {content}
         </div>
         <Button
           color="link"

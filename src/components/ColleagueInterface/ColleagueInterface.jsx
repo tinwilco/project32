@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { format } from "date-fns";
 import { Alert, Button, Spinner } from "reactstrap";
+import PropTypes from "prop-types";
 
 import EmojiButton from "../EmojiButton/EmojiButton";
 import UsernameEntry from "../UsernameEntry/UsernameEntry";
@@ -10,7 +11,7 @@ import styles from "./ColleagueInterface.module.css";
 import { buttons as emojiButtonArray } from "../../assets/emojiButtons.json";
 import { SendRecord } from "../utils/api";
 
-const ColleagueInterface = () => {
+const ColleagueInterface = props => {
   const selectedDate = useMemo(() => new Date(), []);
 
   const [selectedMood, updateSelectedMood] = useState(null);
@@ -26,10 +27,10 @@ const ColleagueInterface = () => {
       userName,
       mood: selectedMood,
       moodDate: format(selectedDate, "yyyy-MM-dd"),
-      comment: ""
+      comments: ""
     };
 
-    const response = await SendRecord(payload);
+    const response = await SendRecord(props.idToken, payload);
 
     if (response.status === 200) {
       updateIsloading(false);
@@ -89,6 +90,10 @@ const ColleagueInterface = () => {
       )}
     </>
   );
+};
+
+ColleagueInterface.propTypes = {
+  idToken: PropTypes.string.isRequired
 };
 
 export default ColleagueInterface;
