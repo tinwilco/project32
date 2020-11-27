@@ -112,8 +112,4 @@ ColleagueInterface.propTypes = {
   darkMode: PropTypes.string,
 };
 
-ColleagueInterface.defaultProps = {
-  darkMode: "",
-};
-
 export default ColleagueInterface;
