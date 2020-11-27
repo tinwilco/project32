@@ -64,3 +64,16 @@ Commands are:
 `npx nightwatch -e chrome --headless --tag end_to_end`     -this is to run all the tests bin chrome headlessly that are in the end_to_end file only
 
 `npx nightwatch -e chrome --headless --tag smoke_tests`   - this is to run all the tests bin chrome headlessly that are in the smoke_tests file only
+
+
+## Cognito Integration
+
+- In the AWS Console, navigate to Cognito > User Pools > Project 32 > "App clients"
+- Click "Show Details"
+- Copy the client secret to the `appClientSecret` variable at the top of
+  `src/components/utils/api.js`.
+- Run the app locally with `yarn run start`
+- In the AWS Console, navigate to Cognito > User Pools > Project 32 > "App client settings"
+- Scroll to the bottom of the section and click Launch Hosted UI.
+- Log in through the cognito prompt using your username & password provided in Zulip.
+- Interact with app as normal
