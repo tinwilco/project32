@@ -14,7 +14,7 @@ exports[`Colleague Interface component matches the snapshot 1`] = `
       Wednesday 01/01/2020
     </h3>
     <p
-      class="HelpBackground"
+      class="HelpText"
     >
       Please select from the options below
     </p>
