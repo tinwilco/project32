@@ -62,11 +62,7 @@ const ColleagueInterface = ({ darkMode }) => {
         {format(selectedDate, "EEEE dd/MM/yyyy")}
       </h3>
       {!selectedMood && (
-        <p
-          className={
-            darkMode ? styles.HelpBackground : lightstyles.HelpBackground
-          }
-        >
+        <p className={darkMode ? styles.HelpText : lightstyles.HelpText}>
           Please select from the options below
         </p>
       )}
@@ -114,10 +110,6 @@ const ColleagueInterface = ({ darkMode }) => {
 
 ColleagueInterface.propTypes = {
   darkMode: PropTypes.string.isRequired,
-};
-
-ColleagueInterface.defaultProps = {
-  darkMode: "",
 };
 
 export default ColleagueInterface;

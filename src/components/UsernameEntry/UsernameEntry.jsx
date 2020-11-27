@@ -30,8 +30,4 @@ UsernameEntry.propTypes = {
   darkMode: PropTypes.string.isRequired,
 };
 
-UsernameEntry.defaultProps = {
-  darkMode: "",
-};
-
 export default UsernameEntry;
