@@ -69,5 +69,8 @@
         "statements": -10
       }
     }
+  },
+  "prettier": {
+    "bracketSpacing": true
   }
 }
