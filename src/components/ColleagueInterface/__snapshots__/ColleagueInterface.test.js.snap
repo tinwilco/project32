@@ -3,14 +3,18 @@
 exports[`Colleague Interface component matches the snapshot 1`] = `
 <body>
   <div>
-    <h2>
+    <h2
+      class="TextBackground"
+    >
       Hello , How are you feeling today?
     </h2>
-    <h3>
+    <h3
+      class="TextBackground"
+    >
       Wednesday 01/01/2020
     </h3>
     <p
-      class="helpText"
+      class="HelpBackground"
     >
       Please select from the options below
     </p>
@@ -74,7 +78,7 @@ exports[`Colleague Interface component matches the snapshot 1`] = `
       </button>
     </div>
     <label
-      class=""
+      class="TextBackground"
       for="usernameInputTextBox"
     >
       Who are you?

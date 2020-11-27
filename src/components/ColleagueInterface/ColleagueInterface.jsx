@@ -64,7 +64,7 @@ const ColleagueInterface = ({ darkMode }) => {
       {!selectedMood && (
         <p
           className={
-            darkMode ? styles.TextBackground : lightstyles.TextBackground
+            darkMode ? styles.HelpBackground : lightstyles.HelpBackground
           }
         >
           Please select from the options below
@@ -114,6 +114,10 @@ const ColleagueInterface = ({ darkMode }) => {
 
 ColleagueInterface.propTypes = {
   darkMode: PropTypes.string.isRequired,
+};
+
+ColleagueInterface.defaultProps = {
+  darkMode: "",
 };
 
 export default ColleagueInterface;

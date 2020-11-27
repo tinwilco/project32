@@ -1,3 +1,4 @@
+import "jest-canvas-mock";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -6,6 +7,16 @@ import App from "./App";
 jest.mock("./ColleagueInterface/ColleagueInterface");
 
 jest.mock("./ManagerInterface/ManagerInterface");
+
+window.matchMedia =
+  window.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addListener: function () {},
+      removeListener: function () {},
+    };
+  };
 
 describe("App component", () => {
   it("renders Colleague interface by default", () => {

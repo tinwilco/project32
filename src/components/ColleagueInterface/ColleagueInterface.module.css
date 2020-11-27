@@ -32,6 +32,12 @@
 }
 
 .TextBackground {
-transition-duration: 2s;
-color: whte;
+  transition-duration: 2s;
+  color: whte;
+}
+
+.HelpText {
+  font-size: 8px;
+  transition-duration: 2s;
+  color: whte;
 }
