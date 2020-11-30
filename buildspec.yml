@@ -17,7 +17,3 @@ artifacts:
     - "**/*"
   discard-paths: no
   base-directory: build
-  #useless branch comment to delete
-#coment 2
-  #BitBucket is the best
-  #Hedwig Rules? We certainly do!
