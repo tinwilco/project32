@@ -4,7 +4,7 @@ import { format, sub } from "date-fns";
 const baseBath = "https://y88t5h149g.execute-api.eu-west-2.amazonaws.com/dev";
 const authBasePath =
   "https://hedwigproject32.auth.eu-west-2.amazoncognito.com/oauth2/token";
-const redirectPath = "http://localhost:8000/";
+const redirectPath = "http://localhost:3000/";
 
 const appClientId = "mc286662tub3dqr7hbods31p3";
 const appClientSecret = "<insert client secret here>";
