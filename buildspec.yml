@@ -3,7 +3,7 @@ phases:
   install:
     commands:
       - yarn install
-      - google-chrome --version 
+      - google-chrome --version
   pre_build:
     commands:
       - npm test -- --coverage --watchAll=false
@@ -17,3 +17,7 @@ artifacts:
     - "**/*"
   discard-paths: no
   base-directory: build
+  #useless branch comment to delete
+#coment 2
+  #BitBucket is the best
+  #Hedwig Rules? We certainly do!
