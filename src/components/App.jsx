@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
-import DarkModeToggle from "react-dark-mode-toggle";
 
 import logo from "../assets/logo_no_bg.png";
 import ColleagueInterface from "./ColleagueInterface/ColleagueInterface";
@@ -8,6 +7,7 @@ import ManagerInterface from "./ManagerInterface/ManagerInterface";
 
 import styles from "./App.module.css";
 import lightstyles from "./LightApp.module.css";
+import DarkModeToggleButton from "./DarkModeToggleButton/DarkModeToggleButton";
 
 function getPrefColorScheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -42,7 +42,11 @@ function App() {
         }
       >
         <div className={styles.App_container}>
-          <DarkModeToggle onChange={setDarkMode} checked={darkMode} size={80} />
+          <DarkModeToggleButton
+            onChange={setDarkMode}
+            checked={darkMode}
+            size={80}
+          />
           <p
             className={
               darkMode ? styles.TextBackground : lightstyles.TextBackground
