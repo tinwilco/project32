@@ -10,23 +10,43 @@ import { Authenticate } from "./utils/api";
 
 function App() {
   const [isManager, updateIsManager] = useState(false);
-  const [idToken, updateIdToken] = useState(null);
+  const [authStatus, updateAuthStatus] = useState({ type: "loading" });
 
   useEffect(async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
-    const token = await Authenticate(code);
-    updateIdToken(token);
+    if (code === null) {
+      updateAuthStatus({ type: "no-code" });
+      return;
+    }
+    try {
+      const token = await Authenticate(code);
+      updateAuthStatus({ type: "authenticated", token });
+    } catch {
+      updateAuthStatus({ type: "authentication-failed" });
+    }
   }, []);
 
-  let content = <div>Loading</div>;
+  let content = null;
 
-  if (idToken !== null) {
-    content = !isManager ? (
-      <ColleagueInterface idToken={idToken} />
-    ) : (
-      <ManagerInterface />
-    );
+  switch (authStatus.type) {
+    case "authenticated":
+      if (isManager) {
+        content = <ManagerInterface />;
+      } else {
+        content = <ColleagueInterface idToken={authStatus.token} />;
+      }
+      break;
+    case "no-code":
+      content = <div>Please authenticate via Cognito</div>;
+      break;
+    case "authentication-failed":
+      content = <div>Authentication failed. Please try again.</div>;
+      break;
+    case "loading":
+    default:
+      content = <div>Loading</div>;
+      break;
   }
 
   return (
