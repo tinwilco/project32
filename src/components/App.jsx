@@ -42,11 +42,7 @@ function App() {
         }
       >
         <div className={styles.App_container}>
-          <DarkModeToggleButton
-            onChange={setDarkMode}
-            checked={darkMode}
-            size={80}
-          />
+          <DarkModeToggleButton onChange={setDarkMode} checked={darkMode} />
           <p
             className={
               darkMode ? styles.TextBackground : lightstyles.TextBackground

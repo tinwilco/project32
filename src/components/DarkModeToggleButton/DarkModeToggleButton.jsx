@@ -67,13 +67,12 @@ const DarkModeToggleButton = ({ checked, onChange, speed }) => {
 
 DarkModeToggleButton.propTypes = {
   checked: PropTypes.bool,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   speed: PropTypes.number
 };
 
 DarkModeToggleButton.defaultProps = {
   checked: false,
-  onChange: () => null,
   speed: 1.3
 };
 
