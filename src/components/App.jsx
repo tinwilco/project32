@@ -42,7 +42,9 @@ function App() {
         }
       >
         <div className={styles.App_container}>
-          <DarkModeToggle onChange={setDarkMode} checked={darkMode} size={80} />
+          <div data-testid="DarkModeToggle">
+            <DarkModeToggle onChange={setDarkMode} checked={darkMode} size={80} />
+          </div>
           <p
             className={
               darkMode ? styles.TextBackground : lightstyles.TextBackground
@@ -60,7 +62,7 @@ function App() {
             <ColleagueInterface darkMode={darkMode} />
           ) : (
             <ManagerInterface darkMode={darkMode} />
-          )}
+            )}
         </div>
         <Button
           color="link"

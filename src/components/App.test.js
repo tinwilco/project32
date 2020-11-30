@@ -36,4 +36,11 @@ describe("App component", () => {
     expect(screen.queryByText("ColleagueInterface")).toBeInTheDocument();
     expect(screen.queryByText("ManagerInterface")).not.toBeInTheDocument();
   });
+
+  it("changes mode from light to dark", () => {
+    render(<App />);
+    userEvent.click(screen.getByTestId('DarkModeToggle').children[0]);
+    const textBackground = document.getElementsByClassName("TextBackground")[0]
+    expect(textBackground.textContent).toContain("Dark Mode")
+  });
 });
