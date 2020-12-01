@@ -23,7 +23,7 @@ describe("Colleague Interface component", () => {
       status: 500,
       error: "testing error scenario"
     });
-    render(<ManagerInterface />);
+    render(<ManagerInterface darkMode="Dark_Mode__Class" />);
     await waitFor(() => {
       screen.getByText(/no results match your query/i);
     });
@@ -43,7 +43,7 @@ describe("Colleague Interface component", () => {
         ]
       }
     ]);
-    render(<ManagerInterface />);
+    render(<ManagerInterface darkMode="Dark_Mode__Class" />);
     await waitFor(() => {
       expect(screen.getByText(/01\/01\/2020/i)).toBeInTheDocument();
       expect(screen.getByText(/tester: ecstatic/i)).toBeInTheDocument();

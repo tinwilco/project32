@@ -20,12 +20,12 @@ describe("Colleague Interface component", () => {
   });
 
   it("matches the snapshot", () => {
-    const subject = render(<ColleagueInterface />);
+    const subject = render(<ColleagueInterface darkMode="Dark_Mode__Class" />);
     expect(subject.baseElement).toMatchSnapshot();
   });
 
   it("shows the help text only when a mood is not selected", () => {
-    render(<ColleagueInterface />);
+    render(<ColleagueInterface darkMode="Dark_Mode__Class" />);
     expect(
       screen.queryByText("Please select from the options below")
     ).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("Colleague Interface component", () => {
   });
 
   it("disables the Submit button until both a mood is selected and a name is entered", () => {
-    render(<ColleagueInterface />);
+    render(<ColleagueInterface darkMode="Dark_Mode__Class" />);
     expect(screen.getByText("Submit").closest("button")).toBeDisabled();
     userEvent.click(screen.getByLabelText("ecstatic"));
     expect(screen.getByText("Submit").closest("button")).toBeDisabled();
@@ -46,7 +46,7 @@ describe("Colleague Interface component", () => {
 
   it("displays a loading spinner while request is pending, removes it when complete", async () => {
     api.SendRecord.mockResolvedValue({ status: 200 });
-    render(<ColleagueInterface />);
+    render(<ColleagueInterface darkMode="Dark_Mode__Class" />);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     userEvent.click(screen.getByLabelText("ecstatic"));
     userEvent.type(screen.getByLabelText("Who are you?"), "tester");
@@ -59,7 +59,7 @@ describe("Colleague Interface component", () => {
 
   it("displays a success alert when request is successful", async () => {
     api.SendRecord.mockResolvedValue({ status: 200 });
-    render(<ColleagueInterface />);
+    render(<ColleagueInterface darkMode="Dark_Mode__Class" />);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     userEvent.click(screen.getByLabelText("ecstatic"));
     userEvent.type(screen.getByLabelText("Who are you?"), "tester");
@@ -76,7 +76,7 @@ describe("Colleague Interface component", () => {
       status: 500,
       error: "testing error scenario"
     });
-    render(<ColleagueInterface />);
+    render(<ColleagueInterface darkMode="Dark_Mode__Class" />);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     userEvent.click(screen.getByLabelText("ecstatic"));
     userEvent.type(screen.getByLabelText("Who are you?"), "tester");
@@ -87,6 +87,4 @@ describe("Colleague Interface component", () => {
       );
     });
   });
-
- 
 });

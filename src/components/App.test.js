@@ -8,17 +8,18 @@ jest.mock("./ColleagueInterface/ColleagueInterface");
 
 jest.mock("./ManagerInterface/ManagerInterface");
 
-window.matchMedia =
-  window.matchMedia ||
-  function () {
-    return {
-      matches: false,
-      addListener() {},
-      removeListener() {},
-    };
-  };
+describe("App component in light mode", () => {
+  beforeEach(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: false,
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn()
+      }))
+    });
+  });
 
-describe("App component", () => {
   it("renders Colleague interface by default", () => {
     render(<App />);
     expect(screen.queryByText("ColleagueInterface")).toBeInTheDocument();
@@ -29,18 +30,38 @@ describe("App component", () => {
     render(<App />);
     expect(screen.queryByText("ColleagueInterface")).toBeInTheDocument();
     expect(screen.queryByText("ManagerInterface")).not.toBeInTheDocument();
-    userEvent.click(screen.getByRole("button"));
+    userEvent.click(screen.getByRole("button", { name: /mood/i }));
     expect(screen.queryByText("ColleagueInterface")).not.toBeInTheDocument();
     expect(screen.queryByText("ManagerInterface")).toBeInTheDocument();
-    userEvent.click(screen.getByRole("button"));
+    userEvent.click(screen.getByRole("button", { name: /mood/i }));
     expect(screen.queryByText("ColleagueInterface")).toBeInTheDocument();
     expect(screen.queryByText("ManagerInterface")).not.toBeInTheDocument();
   });
 
-  it("changes mode from light to dark", () => {
+  it("changes mode from light to dark", async () => {
     render(<App />);
-    userEvent.click(screen.getByTestId('DarkModeToggle').children[0]);
-    const textBackground = document.getElementsByClassName("TextBackground")[0]
-    expect(textBackground.textContent).toContain("Dark Mode")
+    userEvent.click(screen.getByRole("button", { name: "" }));
+    expect(screen.queryByText("Dark Mode")).toBeInTheDocument();
+    expect(screen.queryByText("Light Mode")).not.toBeInTheDocument();
+  });
+});
+
+describe("App component in dark mode", () => {
+  beforeEach(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: true,
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn()
+      }))
+    });
+  });
+
+  it("changes mode from dark to light", async () => {
+    render(<App />);
+    userEvent.click(screen.getByRole("button", { name: "" }));
+    expect(screen.queryByText("Dark Mode")).not.toBeInTheDocument();
+    expect(screen.queryByText("Light Mode")).toBeInTheDocument();
   });
 });
