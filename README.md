@@ -39,3 +39,28 @@ To test this locally,
 ## Notes
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+# Project32 Nightwatch tests
+
+Nightwatch is one of the newer browser automation frameworks.
+Using Nightwatch has several benefits over a raw selenium approach :
+
+1. It's written in nodejs
+2. It natively supports dynamic waits and the page object model
+
+It supports the Selenium grid which allows it to be used with tools like Saucelabs and Browserstack for crossbrowser testing and parallelisation.
+
+We have several  files under a nightwatch_tests folder. One is for smoke testing and the rest are to test features.
+To run the tests when you download the git repo you need the following commands : 
+
+`npx nightwatch`                                           - this is to run all the nightwatch tests in Chrome and Firefox and the browsers actually open dynamically
+`npx nightwatch -e chrome --headless`                      - this is to run all the tests headlessly but in chrome
+
+If you are in a terminal within the nightwatch test files, you are able to execute the test files singularly as they are tagged.
+
+Commands are:
+
+`npx nightwatch -e chrome --headless --tag end_to_end`     -this is to run all the tests bin chrome headlessly that are in the end_to_end file only
+
+`npx nightwatch -e chrome --headless --tag smoke_tests`   - this is to run all the tests bin chrome headlessly that are in the smoke_tests file only
