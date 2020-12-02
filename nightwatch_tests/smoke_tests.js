@@ -1,82 +1,69 @@
+const hedwig_logo_cssSelector = "#root > div > div > div > img";
+const hello_how_are_you_feelin_text_cssSelector =
+  "#root > div > div > div > h2";
+const select_from_images_text_cssSelector = "#root > div > div > div > p";
+const select_mood_images_cssSelector = "#root > div > div > div > div";
+const who_are_you_text_cssSelector = "#root > div > div > div > label";
+const select_from_the_options_below_text_cssSelector =
+  "#root > div > div > div > p";
+const click_here_to_see_team_model_cssSelector = "#root > div > div > button";
+const return_to_mood_entry_cssSelector = "#root > div > div > button";
+
 module.exports = {
-  "1. Hedwig logo - is it visible": function (browser) {
+  tags: ["smoke_tests"],
+
+  "1. Hedwig logo - is it visible": async function (browser) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
 
-    const cssSelector = "#root > div > div > div > img";
-    browser.assert.visible("#root > div > div > div > img");
+    await browser.assert.visible(hedwig_logo_cssSelector);
   },
 
-  "2. Hello How are you feeling today": function (browser) {
+  "2. Hello How are you feeling today": async function (browser) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
-    
 
-    const cssSelector = "#root > div > div > div > h2";
-    browser.assert.containsText("#root > div > div > div > h2", "feeling");
-    
+    await browser.assert.containsText(
+      hello_how_are_you_feelin_text_cssSelector,
+      "feeling"
+    );
   },
 
-  "3. Please select from the images below": function (browser) {
+  "3. Please select from the images below": async function (browser) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
 
-    const cssSelector = "#root > div > div > div > p";
-    browser.expect.element("#root > div > div > div > p").to.be.visible;
+    await browser.expect.element(select_from_images_text_cssSelector).to.be
+      .visible;
   },
 
-  "4. Mood images are present": function (browser) {
+  "4. Mood images are present": async function (browser) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
-    
-    const cssSelector = "#root > div > div > div > div";
-    browser.expect.element("#root > div > div > div > div").to.be.visible;
-    
+
+    await browser.expect.element(select_mood_images_cssSelector).to.be.visible;
   },
 
-  "5. Who are you text": function (browser) {
+  "5. Who are you text": async function (browser) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
 
-    const cssSelector = "#root > div > div > div > label";
-    browser.expect.element("#root > div > div > div > label").to.be.visible;
-
+    await browser.expect.element(who_are_you_text_cssSelector).to.be.visible;
   },
 
-  "6. Enter name in username field": function (browser) {
+  "6. Please select from the options below is not there": async function (
+    browser
+  ) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
-    browser.pause(2 * 1000);
-    const cssSelector = "#usernameInputTextBox";
 
-    browser.setValue(cssSelector, "Helens_Test_Name");
-    browser.clearValue("#usernameInputTextBox");
-    browser.click ("#usernameInputTextBox");
-    browser.keys ("Helen's 2nd test");
-    
-    browser.pause(2 * 1000);
+    const cssSelector =
+      "#root > div > div > div > div > button.EmojiButton_EmojiButton__1_DRA.EmojiButton_EmojiButton_selected__2Nkuv > span";
+    await browser.click(
+      "#root > div > div > div > div > button:nth-child(1) > span"
+    );
+    await browser.expect.element(select_from_the_options_below_text_cssSelector)
+      .to.be.not.present;
   },
 
-  "7. Select a mood": function(browser) {
-    browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
-    browser.pause(2 * 1000);
-    const cssSelector = "#usernameInputTextBox";
-
-    browser.setValue(cssSelector, "Helens_Test_Name");
-    browser.clearValue("#usernameInputTextBox");
-    browser.click ("#usernameInputTextBox");
-    browser.keys ("Helen's 2nd test");
-
-  },
-
-  "8. Please select from the options below is not there": function(browser) {
+  "7. Text stating 'Click here to see team model'": async function (browser) {
     browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
 
-    const cssSelector = "#root > div > div > div > div > button.EmojiButton_EmojiButton__1_DRA.EmojiButton_EmojiButton_selected__2Nkuv > span";
-    browser.click ("#root > div > div > div > div > button:nth-child(1) > span");
-    browser.expect.element("#root > div > div > div > p").to.be.not.present;
-    
-  },
-
-  "9. Text stating 'Click here to see team model'": function (browser) {
-    browser.url("https://project32.s3.eu-west-2.amazonaws.com/index.html");
-    browser.pause(2 * 1000);
-    const cssSelector = "#root > div > div > button";
-    browser.expect.element("#root > div > div > button").to.be.visible;
+    browser.assert.visible(click_here_to_see_team_model_cssSelector);
     browser.end();
   },
 };

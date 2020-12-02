@@ -37,7 +37,8 @@
   "devDependencies": {
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.2.2",
-    "chromedriver": "^85.0.0",
+    "chromedriver": "^87.0.0",
+    "dirty-chai": "^2.0.1",
     "eslint": "^7.13.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",
